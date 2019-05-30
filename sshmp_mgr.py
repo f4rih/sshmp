@@ -166,7 +166,7 @@ class InstallSSHMP(CheckSystemDependencies):
 			hashed_password_hexdigest = hashed_password.hexdigest()
 
 			# create directory
-			self.create_directory_for_installation(app_dir=self.app_dir)
+			self.create_directory_for_installation(app_dir=self.app_dir, ssh_directory=self.ssh_directory)
 			# create database for user
 			self.create_database(ssh_directory=self.ssh_directory, app_dir=self.app_dir, db_loc=self.db_loc)
 			# add username and password to database
@@ -182,7 +182,7 @@ class InstallSSHMP(CheckSystemDependencies):
 			InstallSSHMP()
 
 
-	def create_directory_for_installation(self, app_dir):
+	def create_directory_for_installation(self, app_dir, ssh_directory):
 		"""
 		create directory for SSHMP
 		:return:
@@ -192,6 +192,11 @@ class InstallSSHMP(CheckSystemDependencies):
 			os.mkdir(app_dir)
 		except FileExistsError:
 			print_with_error("SSHMP Folder is exist!")
+
+		try:
+			os.mkdir(ssh_directory)
+		except FileExistsError:
+			print_with_error(".ssh Folder is exist!")
 
 	def create_database(self, ssh_directory, app_dir, db_loc):
 		"""Create database"""
