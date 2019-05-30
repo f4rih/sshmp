@@ -195,9 +195,6 @@ class InstallSSHMP(CheckSystemDependencies):
 
 	def create_database(self, ssh_directory, app_dir, db_loc):
 		"""Create database"""
-		# check if .sshmp directory not exists try to create it
-		if not os.path.exists(ssh_directory):
-			os.mkdir(app_dir)
 
 		try:
 			# connect to Sqlite database
