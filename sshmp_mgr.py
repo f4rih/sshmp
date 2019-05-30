@@ -140,9 +140,7 @@ class CheckSystemDependencies(object):
 		try:
 			rc_file = open(ssh_rc, "r").read()
 		except FileNotFoundError:
-			print_with_error("SSHMP not installed on this user!")
-			print_with_info("Use --install switch for installing SSHMP for this user!")
-			sys.exit()
+			return "False"
 		else:
 			# there is old version
 			if "sshmp.py" in rc_file:
