@@ -249,7 +249,8 @@ class InstallSSHMP(CheckSystemDependencies):
 		# add execute command in rc file
 		try:
 			rc_file = open(rc, "w")
-		except:
+		except Exception as e:
+			print(e)
 			print_with_error("Couldn't create rc file, exiting...")
 			sys.exit()
 		else:
